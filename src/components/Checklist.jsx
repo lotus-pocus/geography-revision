@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 const CHECKLIST_SECTIONS = [
   {
-    title: 'Rivers — I can explain...',
+    title: 'Rivers - I can explain...',
     items: [
       'The four types of erosion (hydraulic action, abrasion, attrition, corrosion)',
       'How V-shaped valleys and waterfalls form in the upper course',
@@ -15,7 +15,7 @@ const CHECKLIST_SECTIONS = [
     ],
   },
   {
-    title: 'Coasts — I can explain...',
+    title: 'Coasts - I can explain...',
     items: [
       'The difference between constructive and destructive waves',
       'Longshore drift and why it matters',
@@ -27,7 +27,7 @@ const CHECKLIST_SECTIONS = [
     ],
   },
   {
-    title: 'Development Dynamics — I can explain...',
+    title: 'Development Dynamics - I can explain...',
     items: [
       'At least three development indicators including HDI',
       'The three causes of global inequality (physical, historical, economic)',
@@ -39,14 +39,14 @@ const CHECKLIST_SECTIONS = [
     ],
   },
   {
-    title: 'India Case Study — I can explain...',
+    title: 'India Case Study - I can explain...',
     items: [
       "India's basic statistics (population, HDI, GNI per capita)",
       'Why 1991 liberalisation was a turning point',
       "How Bangalore's IT sector has grown through globalisation",
       'The benefits AND costs of TNCs operating in India',
-      'The Narmada Dam (top-down) — facts, benefits, and problems',
-      'SEWA (bottom-up) — what it does and why it works',
+      'The Narmada Dam (top-down) - facts, benefits, and problems',
+      'SEWA (bottom-up) - what it does and why it works',
       'Inequalities within India (Kerala vs Bihar, urban vs rural)',
       "India's future challenges (climate, inequality, pollution)",
     ],

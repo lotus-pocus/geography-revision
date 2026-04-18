@@ -5,7 +5,7 @@ function Header({ totalTopics, doneCount }) {
     <header className="header">
       <div className="header-text">
         <h1>Scarlett's Geography Revision</h1>
-        <p>Edexcel B — Development Dynamics &amp; UK Physical Landscapes</p>
+        <p>Edexcel B: Development Dynamics &amp; UK Physical Landscapes</p>
       </div>
       <div className="progress-section">
         <div className="progress-bar-track">

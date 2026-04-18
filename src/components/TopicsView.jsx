@@ -1,19 +1,17 @@
-import { useState } from 'react';
 import TopicCard from './TopicCard';
 import TopicDetail from './TopicDetail';
+import KeyTheories from './KeyTheories';
 
 const SECTIONS = [
-  { key: 'hazardous',     label: 'Hazardous Earth',        unit: 'Paper 1 — Global Geographical Issues' },
+  { key: 'hazardous',     label: 'Hazardous Earth',        unit: 'Paper 1 - Global Geographical Issues' },
   { key: 'urbanisation',  label: 'Urbanising World',        unit: null },
   { key: 'development',   label: 'Global Development',      unit: null },
   { key: 'india',         label: 'India Case Study',        unit: null },
-  { key: 'rivers',        label: 'Rivers',                  unit: 'Paper 2 — UK\'s Evolving Physical Landscape' },
+  { key: 'rivers',        label: 'Rivers',                  unit: 'Paper 2 - UK\'s Evolving Physical Landscape' },
   { key: 'coasts',        label: 'Coasts',                  unit: null },
 ];
 
-function TopicsView({ allTopics, done, onMarkDone }) {
-  const [selectedId, setSelectedId] = useState(null);
-
+function TopicsView({ allTopics, done, onMarkDone, selectedId, onSelectId }) {
   const selectedTopic = selectedId
     ? allTopics.find((t) => t.id === selectedId)
     : null;
@@ -24,13 +22,15 @@ function TopicsView({ allTopics, done, onMarkDone }) {
         topic={selectedTopic}
         isDone={done.includes(selectedTopic.id)}
         onMarkDone={onMarkDone}
-        onBack={() => setSelectedId(null)}
+        onBack={() => onSelectId(null)}
       />
     );
   }
 
   return (
     <div className="topics-view">
+      <KeyTheories />
+
       {SECTIONS.map((section) => {
         const sectionTopics = allTopics.filter((t) => t.category === section.key);
         return (
@@ -45,7 +45,7 @@ function TopicsView({ allTopics, done, onMarkDone }) {
                   key={topic.id}
                   topic={topic}
                   isDone={done.includes(topic.id)}
-                  onClick={setSelectedId}
+                  onClick={onSelectId}
                 />
               ))}
             </div>

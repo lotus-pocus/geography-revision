@@ -41,7 +41,7 @@ function Glossary({ allTopics }) {
   return (
     <div className="glossary-view">
       <p className="view-intro">
-        All key terms across both units — learn the definitions before your exam!
+        All key terms across both units - learn the definitions before your exam!
       </p>
 
       <input

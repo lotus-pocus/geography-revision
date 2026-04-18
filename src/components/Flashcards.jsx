@@ -112,7 +112,7 @@ function Flashcards({ allTopics }) {
   return (
     <div className="flashcards-view">
       <p className="view-intro">
-        Tap a card to flip it — then mark whether you knew it! 🎯 Great for phone revision.
+        Tap a card to flip it. Then mark whether you knew it! 🎯 Great for phone revision.
       </p>
 
       <div className="fc-filter-row">
@@ -190,12 +190,12 @@ function Flashcards({ allTopics }) {
         <div className="fc-finished">
           <p className="fc-finished-title">🎉 Round complete!</p>
           <p className="fc-finished-score">
-            You knew <strong>{correct.length}</strong> out of {filteredDeck.length} — {pct}%
+            You knew <strong>{correct.length}</strong> out of {filteredDeck.length} - {pct}%
           </p>
           <p className="fc-finished-msg">
-            {pct >= 80 ? '🌟 Amazing — you really know these!' :
-             pct >= 60 ? '👍 Good effort — review the ones you missed.' :
-             '📖 Keep going — every round you\'ll improve!'}
+            {pct >= 80 ? '🌟 Amazing - you really know these!' :
+             pct >= 60 ? '👍 Good effort - review the ones you missed.' :
+             '📖 Keep going - every round you\'ll improve!'}
           </p>
           <button className="fc-restart-btn" onClick={handleRestart}>
             🔀 Shuffle and go again

@@ -5,13 +5,13 @@ const QUESTIONS = [
     q: 'What is the term for the time between peak rainfall and peak river discharge on a storm hydrograph?',
     opts: ['Lag time', 'Peak discharge', 'Rising limb', 'Recession limb'],
     ans: 0,
-    exp: 'Lag time is the gap between peak rainfall and peak discharge. A short lag time means fast run-off and higher flood risk — common in urban areas.',
+    exp: 'Lag time is the gap between peak rainfall and peak discharge. A short lag time means fast run-off and higher flood risk. Common in urban areas.',
   },
   {
     q: 'Which type of wave has a strong swash, weak backwash, and builds up beaches?',
     opts: ['Destructive wave', 'Constructive wave', 'Tsunami', 'Storm surge'],
     ans: 1,
-    exp: 'Constructive waves have low frequency and strong swash — they carry material up the beach and deposit it, building beaches and spits.',
+    exp: 'Constructive waves have low frequency and strong swash. They carry material up the beach and deposit it, building beaches and spits.',
   },
   {
     q: 'What erosion process involves rocks carried by a river scraping and wearing down the riverbed?',
@@ -29,13 +29,13 @@ const QUESTIONS = [
     q: 'What term describes the net movement of sediment along a coastline due to waves approaching at an angle?',
     opts: ['Saltation', 'Attrition', 'Longshore drift', 'Traction'],
     ans: 2,
-    exp: 'Longshore drift occurs when waves approach at an angle — swash carries sediment up at that angle, backwash pulls it straight back, creating a zigzag net movement.',
+    exp: 'Longshore drift occurs when waves approach at an angle. Swash carries sediment up at that angle, backwash pulls it straight back, creating a zigzag net movement.',
   },
   {
     q: "In Frank's Dependency Theory, what does the 'core' represent?",
     opts: ['Rural farming communities', 'Poor developing countries', 'Wealthy industrialised countries', 'International aid organisations'],
     ans: 2,
-    exp: "In Frank's model, the 'core' represents wealthy HICs that exploit the 'periphery' (poorer LICs) through trade and investment — keeping them dependent and underdeveloped.",
+    exp: "In Frank's model, the 'core' represents wealthy HICs that exploit the 'periphery' (poorer LICs) through trade and investment - keeping them dependent and underdeveloped.",
   },
   {
     q: "Which Indian city is known as 'India's Silicon Valley' due to its large IT sector?",
@@ -47,19 +47,19 @@ const QUESTIONS = [
     q: 'What landform is created when a meander neck is cut through during a flood, isolating the old bend?',
     opts: ['Floodplain', 'Ox-bow lake', 'Levée', 'Point bar'],
     ans: 1,
-    exp: "When a meander neck is breached during flooding, the old meander bend gets cut off from the main channel and fills with still water — forming a crescent-shaped ox-bow lake.",
+    exp: "When a meander neck is breached during flooding, the old meander bend gets cut off from the main channel and fills with still water, forming a crescent-shaped ox-bow lake.",
   },
   {
     q: 'What is the fastest eroding coastline in Europe, losing up to 2m per year?',
     opts: ['Dorset coast', 'Holderness coast (Yorkshire)', 'Norfolk coast', 'Cornish coast'],
     ans: 1,
-    exp: 'The Holderness coast in East Yorkshire is made of soft boulder clay, has a long fetch from Scandinavia, and narrow beaches — making it the fastest eroding coast in Europe.',
+    exp: 'The Holderness coast in East Yorkshire is made of soft boulder clay, has a long fetch from Scandinavia, and narrow beaches; making it the fastest eroding coast in Europe.',
   },
   {
     q: "In development, what does 'bottom-up' development prioritise?",
     opts: ['Large dams and motorways funded by governments', 'Local communities designing and leading their own projects', 'Foreign investment from TNCs', 'World Bank loans for infrastructure'],
     ans: 1,
-    exp: 'Bottom-up development involves local communities in the design and running of projects. Examples include micro-finance schemes and village water pumps — they meet real local needs.',
+    exp: 'Bottom-up development involves local communities in the design and running of projects. Examples include micro-finance schemes and village water pumps; they meet real local needs.',
   },
   {
     q: "What do you call the flat, rocky shelf left behind as a cliff retreats due to wave erosion?",
@@ -77,19 +77,19 @@ const QUESTIONS = [
     q: 'Which river flooded catastrophically in Sheffield in June 2007?',
     opts: ['River Severn', 'River Thames', 'River Don', 'River Trent'],
     ans: 2,
-    exp: "The River Don (and River Sheaf) flooded after 90mm of rain fell in just 12 hours — a month's worth in a single day. 1,500 homes were flooded and damage cost ~£50 million.",
+    exp: "The River Don (and River Sheaf) flooded after 90mm of rain fell in just 12 hours! A month's worth in a single day. 1,500 homes were flooded and damage cost ~£50 million.",
   },
   {
     q: 'What is the name of the large top-down dam project built on the Narmada River in India?',
     opts: ['Hoover Dam', 'Three Gorges Dam', 'Sardar Sarovar Dam', 'Aswan High Dam'],
     ans: 2,
-    exp: 'The Sardar Sarovar Dam on the Narmada River in Gujarat provides water for 20 million people and generates 1,450 MW of power — but displaced 320,000+ people.',
+    exp: 'The Sardar Sarovar Dam on the Narmada River in Gujarat provides water for 20 million people and generates 1,450 MW of power; but displaced 320,000+ people.',
   },
   {
     q: 'What does SEWA stand for, and what does it do?',
-    opts: ['State Economic Welfare Association — funds government projects', 'Self Employed Women\'s Association — provides micro-loans and support to informal female workers', 'South East Water Authority — manages irrigation', 'Social Equality and Welfare Agency — distributes foreign aid'],
+    opts: ['State Economic Welfare Association - funds government projects', 'Self Employed Women\'s Association - provides micro-loans and support to informal female workers', 'South East Water Authority - manages irrigation', 'Social Equality and Welfare Agency - distributes foreign aid'],
     ans: 1,
-    exp: "SEWA (Self Employed Women's Association) was founded in Ahmedabad in 1972. It provides micro-loans, legal support, childcare, and healthcare to India's informal female workforce — now with 2 million members.",
+    exp: "SEWA (Self Employed Women's Association) was founded in Ahmedabad in 1972. It provides micro-loans, legal support, childcare, and healthcare to India's informal female workforce - now with 2 million members.",
   },
 ];
 
@@ -136,9 +136,9 @@ function Quiz() {
   if (finished) {
     const pct = Math.round((score / questions.length) * 100);
     let message = '';
-    if (pct >= 80) message = 'Brilliant work — you really know this material!';
-    else if (pct >= 60) message = 'Good effort — review the ones you missed and try again.';
-    else message = "Keep revising — you'll get there! Try again after going through the topics.";
+    if (pct >= 80) message = 'Brilliant work, you really know this material!';
+    else if (pct >= 60) message = 'Good effort, review the ones you missed and try again.';
+    else message = "Keep revising, you'll get there! Try again after going through the topics.";
 
     return (
       <div className="quiz-view">

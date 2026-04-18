@@ -20,7 +20,7 @@ function CaseStudies({ allTopics }) {
     return (
         <div className="case-studies-view">
             <p className="view-intro">
-                All the case studies you need to know — learn the specific facts and statistics!
+                All the case studies you need to know - learn the specific facts and statistics!
             </p>
 
             <div className="filter-row">

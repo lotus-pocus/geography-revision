@@ -1,10 +1,11 @@
 const tabs = [
-  { id: 'topics',    label: 'All Topics' },
+  { id: 'topics',      label: 'All Topics' },
   { id: 'casestudies', label: 'Case Studies' },
   { id: 'flashcards',  label: 'Flashcards' },
-  { id: 'glossary', label: 'Key Terms' },
-  { id: 'quiz',     label: 'Quiz Me' },
-  { id: 'checklist', label: 'Checklist' },
+  { id: 'glossary',    label: 'Key Terms' },
+  { id: 'quiz',        label: 'Quiz Me' },
+  { id: 'checklist',   label: 'Checklist' },
+  { id: 'about',       label: '🎮 About' },
 ];
 
 function NavTabs({ activeTab, onTabChange }) {
