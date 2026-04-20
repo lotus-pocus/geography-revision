@@ -1,8 +1,7 @@
 /* eslint-disable no-restricted-globals */
 
-const CACHE_NAME = 'geo-revision-v1';
+const CACHE_NAME = 'geo-revision-v5';
 
-// All the files your app needs to work offline
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
@@ -11,7 +10,7 @@ const ASSETS_TO_CACHE = [
   '/manifest.json',
 ];
 
-// On install: cache all assets
+// On install: cache assets and immediately take control
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS_TO_CACHE))
@@ -19,19 +18,39 @@ self.addEventListener('install', (event) => {
   self.skipWaiting();
 });
 
-// On activate: delete old caches
+// On activate: delete ALL old caches and take control immediately
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
       Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
-    )
+    ).then(() => self.clients.claim())
   );
-  self.clients.claim();
 });
 
-// On fetch: serve from cache, fall back to network
+// On fetch: always go to network for HTML page loads, network-first for everything else
 self.addEventListener('fetch', (event) => {
+  if (event.request.method !== 'GET') return;
+
+  // HTML navigations always fetch fresh - prevents blank page on first load
+  if (event.request.mode === 'navigate') {
+    event.respondWith(fetch(event.request));
+    return;
+  }
+
+  // Everything else: network first, cache as offline fallback
   event.respondWith(
-    caches.match(event.request).then((cached) => cached || fetch(event.request))
+    fetch(event.request)
+      .then((networkResponse) => {
+        if (networkResponse && networkResponse.status === 200) {
+          const responseClone = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, responseClone);
+          });
+        }
+        return networkResponse;
+      })
+      .catch(() => {
+        return caches.match(event.request);
+      })
   );
 });

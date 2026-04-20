@@ -13,6 +13,8 @@ import Glossary from "./components/Glossary";
 import Quiz from "./components/Quiz";
 import Checklist from "./components/Checklist";
 import Flashcards from "./components/Flashcards";
+import MathsHub from "./components/MathsHub";
+import Clinometer from "./components/Clinometer";
 import "./index.css";
 import About from "./components/About";
 
@@ -29,6 +31,9 @@ const STORAGE_KEY = "geo_done_v1";
 function App() {
   const [activeTab, setActiveTab] = useState("topics");
   const [selectedTopicId, setSelectedTopicId] = useState(null);
+  const [mathsKey, setMathsKey] = useState(0);
+  const [clinometerKey, setClinometerKey] = useState(0);
+  const [showClinometer, setShowClinometer] = useState(false);
 
   const [done, setDone] = useState(() => {
     try {
@@ -40,7 +45,11 @@ function App() {
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
-    setSelectedTopicId(null); // always reset topic detail when switching tabs
+    setSelectedTopicId(null);
+    if (tab === "maths") {
+      setMathsKey(k => k + 1);
+      setShowClinometer(false);
+    }
   };
 
   const markDone = (id) => {
@@ -50,6 +59,12 @@ function App() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
       return next;
     });
+  };
+
+  const launchClinometer = () => {
+    setClinometerKey(k => k + 1);
+    setShowClinometer(true);
+    return null;
   };
 
   const renderTab = () => {
@@ -74,6 +89,11 @@ function App() {
         return <Quiz />;
       case "checklist":
         return <Checklist />;
+      case "maths":
+        if (showClinometer) {
+          return <Clinometer key={clinometerKey} onBack={() => setShowClinometer(false)} />;
+        }
+        return <MathsHub key={mathsKey} onBeachProfile={launchClinometer} />;
       case "about":
         return <About />;
       default:

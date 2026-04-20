@@ -5,7 +5,8 @@ const tabs = [
   { id: 'glossary',    label: 'Key Terms' },
   { id: 'quiz',        label: 'Quiz Me' },
   { id: 'checklist',   label: 'Checklist' },
-  { id: 'about',       label: '🎮 About' },
+  { id: 'maths',       label: 'Maths Skills' },
+  { id: 'about',       label: 'About' },
 ];
 
 function NavTabs({ activeTab, onTabChange }) {
