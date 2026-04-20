@@ -743,9 +743,9 @@ body {
 /* ── Responsive ───────────────────────────────────────────── */
 @media (max-width: 600px) {
   .app { padding: 0 0.5rem 3rem; }
-  .header h1 { font-size: 1.5rem; }
-  .tab-btn { font-size: 0.8rem; padding: 6px 11px; }
-  .topic-grid { grid-template-columns: 1fr 1fr; }
+  .header h1 { font-size: 2rem; }
+  .tab-btn { font-size: 0.85rem; padding: 6px 12px; }
+  .topic-grid { grid-template-columns: 1fr; }
   .terms-grid { grid-template-columns: 1fr; }
   .glossary-item { flex-direction: column; gap: 4px; }
   .glossary-term { min-width: unset; }
@@ -754,25 +754,28 @@ body {
 @media (max-width: 480px) {
   .app { padding: 0 0 3rem; }
   .header { padding: 1.25rem 1rem 1rem; }
-  .header h1 { font-size: 1.4rem; }
-  .header p { font-size: 0.8rem; }
+  .header h1 { font-size: 1.8rem; }
+  .header p { font-size: 0.9rem; }
   .main-content { border-radius: 0; box-shadow: none; }
   .tab-content { padding: 1rem; }
   .nav-tabs { gap: 4px; padding: 0.5rem 0.75rem; overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
   .nav-tabs::-webkit-scrollbar { display: none; }
-  .tab-btn { font-size: 0.75rem; padding: 6px 10px; white-space: nowrap; flex-shrink: 0; }
-  .topic-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
-  .card-title { font-size: 0.8rem; }
+  .tab-btn { font-size: 0.85rem; padding: 8px 12px; white-space: nowrap; flex-shrink: 0; }
+  .topic-grid { grid-template-columns: 1fr; gap: 10px; }
+  .card-title { font-size: 0.95rem; }
+  .card-badge { font-size: 0.75rem; }
   .terms-grid { grid-template-columns: 1fr; }
   .detail-card { padding: 1rem; }
-  .detail-title { font-size: 1.1rem; }
+  .detail-title { font-size: 1.2rem; }
   .glossary-item { flex-direction: column; gap: 3px; }
   .glossary-term { min-width: unset; }
   .quiz-view { max-width: 100%; }
-  .fc-term { font-size: 1.2rem; }
-  .fc-def { font-size: 0.95rem; }
-  .fc-nav-btn { padding: 10px 20px; font-size: 0.85rem; }
+  .fc-term { font-size: 1.3rem; }
+  .fc-def { font-size: 1rem; }
+  .fc-nav-btn { padding: 10px 20px; font-size: 0.9rem; }
   .cs-card { padding: 1rem; }
   .btn-row { flex-direction: column; }
   .btn-primary, .btn-secondary, .btn-done { width: 100%; text-align: center; }
+  .section-heading { font-size: 1.15rem; }
+  .view-intro { font-size: 0.95rem; }
 }
