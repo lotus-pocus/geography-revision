@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import rivers from "./data/rivers";
 import coasts from "./data/coasts";
 import development from "./data/development";
@@ -13,8 +13,7 @@ import Glossary from "./components/Glossary";
 import Quiz from "./components/Quiz";
 import Checklist from "./components/Checklist";
 import Flashcards from "./components/Flashcards";
-import MathsHub from "./components/MathsHub";
-import Clinometer from "./components/Clinometer";
+import LastMinuteRevision from "./components/LastMinuteRevision";
 import "./index.css";
 import About from "./components/About";
 
@@ -29,11 +28,16 @@ const ALL_TOPICS = [
 const STORAGE_KEY = "geo_done_v1";
 
 function App() {
-  const [activeTab, setActiveTab] = useState("topics");
-  const [selectedTopicId, setSelectedTopicId] = useState(null);
-  const [mathsKey, setMathsKey] = useState(0);
-  const [clinometerKey, setClinometerKey] = useState(0);
-  const [showClinometer, setShowClinometer] = useState(false);
+  const [activeTab, setActiveTab] = useState("revision");
+  const [toastVisible, setToastVisible] = useState(false);
+
+  useEffect(() => {
+    // Slight delay so the page renders first, then slide up
+    const showTimer = setTimeout(() => setToastVisible(true), 400);
+    // Slide back down after 3s of being visible
+    const hideTimer = setTimeout(() => setToastVisible(false), 2500);
+    return () => { clearTimeout(showTimer); clearTimeout(hideTimer); };
+  }, []);
 
   const [done, setDone] = useState(() => {
     try {
@@ -42,15 +46,6 @@ function App() {
       return [];
     }
   });
-
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
-    setSelectedTopicId(null);
-    if (tab === "maths") {
-      setMathsKey(k => k + 1);
-      setShowClinometer(false);
-    }
-  };
 
   const markDone = (id) => {
     setDone((prev) => {
@@ -61,12 +56,6 @@ function App() {
     });
   };
 
-  const launchClinometer = () => {
-    setClinometerKey(k => k + 1);
-    setShowClinometer(true);
-    return null;
-  };
-
   const renderTab = () => {
     switch (activeTab) {
       case "topics":
@@ -75,8 +64,6 @@ function App() {
             allTopics={ALL_TOPICS}
             done={done}
             onMarkDone={markDone}
-            selectedId={selectedTopicId}
-            onSelectId={setSelectedTopicId}
           />
         );
       case "casestudies":
@@ -87,13 +74,10 @@ function App() {
         return <Flashcards allTopics={ALL_TOPICS} />;
       case "quiz":
         return <Quiz />;
+      case "revision":
+        return <LastMinuteRevision />;
       case "checklist":
         return <Checklist />;
-      case "maths":
-        if (showClinometer) {
-          return <Clinometer key={clinometerKey} onBack={() => setShowClinometer(false)} />;
-        }
-        return <MathsHub key={mathsKey} onBeachProfile={launchClinometer} />;
       case "about":
         return <About />;
       default:
@@ -104,8 +88,34 @@ function App() {
   return (
     <div className="app">
       <Header totalTopics={ALL_TOPICS.length} doneCount={done.length} />
+
+      {/* Toast slides up from bottom centre */}
+      <div style={{
+        position: 'fixed',
+        bottom: toastVisible ? '400px' : '-140px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        zIndex: 9999,
+        background: '#dc2626',
+        color: '#ffffff',
+        padding: '16px 28px',
+        borderRadius: '14px',
+        boxShadow: '0 8px 30px rgba(0,0,0,0.25)',
+        fontSize: '16px',
+        fontWeight: '700',
+        textAlign: 'center',
+        lineHeight: 1.6,
+        whiteSpace: 'nowrap',
+        transition: 'bottom 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
+        pointerEvents: 'none',
+      }}>
+        🎯 Last Minute Revision tab is now live!
+        <br />
+        <span style={{ fontWeight: '500', fontSize: '14px', opacity: 0.92 }}>Key facts, stats &amp; exam tips. Good luck everyone! 💪</span>
+      </div>
+
       <main className="main-content">
-        <NavTabs activeTab={activeTab} onTabChange={handleTabChange} />
+        <NavTabs activeTab={activeTab} onTabChange={setActiveTab} />
         <div className="tab-content">{renderTab()}</div>
       </main>
       <footer className="sticky-footer">
@@ -113,7 +123,7 @@ function App() {
         <a href="https://gamoola.com" target="_blank" rel="noreferrer">
           Gamoola
         </a>{" "}
-        - interactive learning experiences for schools and businesses.
+        — interactive learning experiences for schools and businesses.
       </footer>
     </div>
   );
