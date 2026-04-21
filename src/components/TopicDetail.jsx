@@ -1,4 +1,11 @@
+import { useEffect } from 'react';
+
 function TopicDetail({ topic, isDone, onMarkDone, onBack }) {
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
     return (
         <div className="topic-detail">
             <button className="back-btn" onClick={onBack}>

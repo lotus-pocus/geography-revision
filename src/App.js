@@ -32,11 +32,11 @@ const STORAGE_KEY = "geo_done_v1";
 function App() {
   const [activeTab, setActiveTab] = useState("revision");
   const [toastVisible, setToastVisible] = useState(false);
+  const [showBeach, setShowBeach] = useState(false);
+  const [quizKey, setQuizKey] = useState(0);
 
   useEffect(() => {
-    // Slight delay so the page renders first, then slide up
     const showTimer = setTimeout(() => setToastVisible(true), 400);
-    // Slide back down after 3s of being visible
     const hideTimer = setTimeout(() => setToastVisible(false), 3400);
     return () => { clearTimeout(showTimer); clearTimeout(hideTimer); };
   }, []);
@@ -49,15 +49,7 @@ function App() {
     }
   });
 
-  const [quizKey, setQuizKey] = useState(0);
-
-  const handleTabChange = (tab) => {
-    if (tab === "quiz") setQuizKey(k => k + 1);
-    setActiveTab(tab);
-    if (typeof window.gtag === "function") {
-      window.gtag("event", "tab_view", { tab_name: tab });
-    }
-  };
+  const [selectedId, setSelectedId] = useState(null);
 
   const markDone = (id) => {
     setDone((prev) => {
@@ -68,7 +60,22 @@ function App() {
     });
   };
 
+  const handleTabChange = (tab) => {
+    if (tab === "quiz") setQuizKey(k => k + 1);
+    setShowBeach(false);
+    setSelectedId(null);
+    setActiveTab(tab);
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "tab_view", { tab_name: tab });
+    }
+  };
+
   const renderTab = () => {
+    // Beach profiling is launched from within MathsHub — handled separately
+    if (showBeach) {
+      return <Clinometer onBack={() => setShowBeach(false)} />;
+    }
+
     switch (activeTab) {
       case "topics":
         return (
@@ -76,6 +83,8 @@ function App() {
             allTopics={ALL_TOPICS}
             done={done}
             onMarkDone={markDone}
+            selectedId={selectedId}
+            onSelectId={setSelectedId}
           />
         );
       case "casestudies":
@@ -91,9 +100,7 @@ function App() {
       case "checklist":
         return <Checklist />;
       case "maths":
-        return <MathsHub onBeachProfile={() => setActiveTab("beach")} />;
-      case "beach":
-        return <Clinometer onBack={() => setActiveTab("maths")} />;
+        return <MathsHub onBeachProfile={() => setShowBeach(true)} />;
       case "about":
         return <About />;
       default:

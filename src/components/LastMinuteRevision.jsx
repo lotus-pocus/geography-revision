@@ -113,7 +113,7 @@ function Badge({ type }) {
 }
 
 export default function LastMinuteRevision() {
-  const [open, setOpen] = useState({ rivers: true, coasts: false, development: false, india: false, examtips: false });
+  const [open, setOpen] = useState({ rivers: false, coasts: false, development: false, india: false, examtips: false });
 
   const toggle = (id) => setOpen(o => ({ ...o, [id]: !o[id] }));
 
