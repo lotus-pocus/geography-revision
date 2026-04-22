@@ -283,6 +283,45 @@ const development = [
       "For globalisation questions, think about WHO benefits - HICs and TNCs tend to benefit more than LIC workers and governments.",
   },
   {
+    id: "d8b",
+    title: "How Globalisation Affects NEEs",
+    category: "development",
+    points: [
+      "NEEs (Newly Emerging Economies) like India, China, Brazil, and Nigeria have grown rapidly because of globalisation.",
+      "Why TNCs invest in NEEs: cheaper labour than HICs, large young workforces, growing domestic markets, weaker environmental and labour regulations, and government incentives like Special Economic Zones (SEZs).",
+      "The FDI growth chain: foreign investment → factories and offices built → jobs created → wages paid → tax revenue for government → spending on schools, hospitals, infrastructure → development improves.",
+      "China: became the world's factory - manufacturing hub for electronics, clothing, cars. Rapid economic growth lifted 800 million out of poverty since 1980. Now the world's 2nd largest economy.",
+      "India: grew through services and IT outsourcing rather than manufacturing. Bangalore became a global tech hub. GDP growth ~7% per year since 1991 liberalisation.",
+      "Benefits for NEEs: rapid economic growth, job creation, technology transfer from TNCs, improved infrastructure, rising living standards for many.",
+      "Costs for NEEs: profits repatriated to HIC headquarters (money leaves the country); inequality increases - urban areas boom while rural areas are left behind; environmental damage from rapid industrialisation; workers often exploited with low wages and poor conditions; dependency on foreign companies.",
+      "Key contrast: China benefited more from manufacturing FDI; India from services FDI - but BOTH show that globalisation can drive NEE development while also creating new inequalities.",
+    ],
+    terms: [
+      {
+        term: "FDI",
+        def: "Foreign Direct Investment - money invested by a foreign company into a country, e.g. a TNC building a factory.",
+      },
+      {
+        term: "SEZ",
+        def: "Special Economic Zone - area where TNCs receive tax breaks and relaxed regulations to attract investment.",
+      },
+      {
+        term: "Technology transfer",
+        def: "When TNCs bring modern technology and skills to an NEE, improving local workers' knowledge and productivity.",
+      },
+      {
+        term: "Repatriation of profits",
+        def: "When TNCs send their profits back to their home country (usually an HIC) rather than reinvesting in the NEE.",
+      },
+      {
+        term: "Dependency",
+        def: "When an NEE's economy relies heavily on foreign companies - if they leave, the economy suffers.",
+      },
+    ],
+    examTip:
+      "For a 'costs and benefits of globalisation for NEEs' question, structure your answer: benefits (FDI, jobs, growth, technology transfer) vs costs (profit repatriation, inequality, environment, exploitation). Use BOTH India AND China as examples - two NEEs always scores better than one.",
+  },
+  {
     id: "d9",
     title: "Reducing Global Inequalities - Top-Down Development",
     category: "development",
@@ -334,6 +373,41 @@ const development = [
     note: "Why are tariffs imposed on Malawi? The EU charges higher tariffs on processed goods (like roasted coffee) than on raw materials (like raw coffee beans). This forces Malawi to export cheap raw materials rather than higher-value processed goods - so they make less profit from trade. It's a key example of how global trade rules keep LICs poor, and directly supports Frank's Dependency Theory.",
     examTip:
       "Learn a specific bottom-up project by name - the Grameen Bank is perfect. Know where it is (Bangladesh), what it does, and why it works.",
+  },
+  {
+    id: "d11",
+    title: "Intermediate / Appropriate Technology",
+    category: "development",
+    points: [
+      "Intermediate technology = technology that is simple enough for local people to use, repair, and afford - more than they currently have, but not high-tech Western equipment.",
+      "Also called appropriate technology - it is appropriate to the skills, resources, and needs of the local community.",
+      "Key idea: communities must not be dependent on outside experts or expensive spare parts - they should be able to maintain it themselves.",
+      "Biogas digesters (cow dung): animal dung is sealed in a simple underground tank. Bacteria break it down, producing biogas (methane) used for cooking and lighting. The leftover slurry is a rich fertiliser for crops.",
+      "Benefits of biogas: uses a free local resource (dung); reduces indoor air pollution from wood fires (a major health issue); slurry improves crop yields; women spend less time collecting firewood.",
+      "Practical Action (formerly ITDG - Intermediate Technology Development Group): UK-based NGO that develops and promotes appropriate technology in LICs.",
+      "Other examples: hand pumps for clean water, solar-powered LED lights, treadle pumps for irrigation.",
+      "Contrast with top-down: large dams provide lots of power but communities cannot maintain them and people are often displaced. Biogas digesters are small-scale but sustainable and community-controlled.",
+    ],
+    terms: [
+      {
+        term: "Intermediate technology",
+        def: "Simple, affordable technology that local people can use and maintain themselves - between basic tools and expensive high-tech equipment.",
+      },
+      {
+        term: "Appropriate technology",
+        def: "Technology suited to the skills, resources, and needs of the local community in an LIC - another name for intermediate technology.",
+      },
+      {
+        term: "Biogas digester",
+        def: "A sealed tank where animal dung is broken down by bacteria to produce biogas (cooking fuel) and fertiliser slurry.",
+      },
+      {
+        term: "Practical Action",
+        def: "UK-based NGO (formerly ITDG) that designs and promotes appropriate technology for communities in LICs.",
+      },
+    ],
+    examTip:
+      "The biogas/cow dung example is very popular in Edexcel B exams - learn the full chain: dung goes in, biogas comes out for cooking, slurry goes on crops as fertiliser. It ticks multiple boxes: bottom-up, sustainable, improves health, improves food security.",
   },
 ];
 

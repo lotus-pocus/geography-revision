@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import rivers from "./data/rivers";
 import coasts from "./data/coasts";
 import development from "./data/development";
@@ -13,9 +13,10 @@ import Glossary from "./components/Glossary";
 import Quiz from "./components/Quiz";
 import Checklist from "./components/Checklist";
 import Flashcards from "./components/Flashcards";
-import LastMinuteRevision from "./components/LastMinuteRevision";
 import MathsHub from "./components/MathsHub";
 import Clinometer from "./components/Clinometer";
+import Search from "./components/Search";
+import ToastNotification from "./components/ToastNotification";
 import "./index.css";
 import About from "./components/About";
 
@@ -30,16 +31,9 @@ const ALL_TOPICS = [
 const STORAGE_KEY = "geo_done_v1";
 
 function App() {
-  const [activeTab, setActiveTab] = useState("revision");
-  const [toastVisible, setToastVisible] = useState(false);
+  const [activeTab, setActiveTab] = useState("topics");
   const [showBeach, setShowBeach] = useState(false);
   const [quizKey, setQuizKey] = useState(0);
-
-  useEffect(() => {
-    const showTimer = setTimeout(() => setToastVisible(true), 400);
-    const hideTimer = setTimeout(() => setToastVisible(false), 3400);
-    return () => { clearTimeout(showTimer); clearTimeout(hideTimer); };
-  }, []);
 
   const [done, setDone] = useState(() => {
     try {
@@ -90,17 +84,33 @@ function App() {
       case "casestudies":
         return <CaseStudies allTopics={ALL_TOPICS} />;
       case "glossary":
-        return <Glossary allTopics={ALL_TOPICS} />;
+        return (
+          <Glossary
+            allTopics={ALL_TOPICS}
+            onSelectTopic={(id) => {
+              setSelectedId(id);
+              setActiveTab("topics");
+            }}
+          />
+        );
       case "flashcards":
         return <Flashcards allTopics={ALL_TOPICS} />;
       case "quiz":
         return <Quiz key={quizKey} />;
-      case "revision":
-        return <LastMinuteRevision />;
       case "checklist":
         return <Checklist />;
       case "maths":
         return <MathsHub onBeachProfile={() => setShowBeach(true)} />;
+      case "search":
+        return (
+          <Search
+            allTopics={ALL_TOPICS}
+            onSelectTopic={(id) => {
+              setSelectedId(id);
+              setActiveTab("topics");
+            }}
+          />
+        );
       case "about":
         return <About />;
       default:
@@ -111,31 +121,7 @@ function App() {
   return (
     <div className="app">
       <Header totalTopics={ALL_TOPICS.length} doneCount={done.length} />
-
-      {/* Toast slides up from bottom centre */}
-      <div style={{
-        position: 'fixed',
-        bottom: toastVisible ? '80px' : '-140px',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        zIndex: 9999,
-        background: '#dc2626',
-        color: '#ffffff',
-        padding: '16px 28px',
-        borderRadius: '14px',
-        boxShadow: '0 8px 30px rgba(0,0,0,0.25)',
-        fontSize: '16px',
-        fontWeight: '700',
-        textAlign: 'center',
-        lineHeight: 1.6,
-        whiteSpace: 'nowrap',
-        transition: 'bottom 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
-        pointerEvents: 'none',
-      }}>
-        🎯 Last Minute Revision tab is now live!
-        <br />
-        <span style={{ fontWeight: '500', fontSize: '14px', opacity: 0.92 }}>Key facts, stats &amp; exam tips. Good luck everyone! 💪</span>
-      </div>
+      <ToastNotification />
 
       <main className="main-content">
         <NavTabs activeTab={activeTab} onTabChange={handleTabChange} />

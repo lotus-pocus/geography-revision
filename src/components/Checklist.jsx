@@ -34,8 +34,10 @@ const CHECKLIST_SECTIONS = [
       "Rostow's Modernisation Theory (5 stages) and one criticism",
       "Frank's Dependency Theory and how it differs from Rostow",
       'Top-down vs bottom-up development with one example each',
+      'What intermediate/appropriate technology is and the biogas digester as an example',
       'Key facts about Malawi as an LIC example',
       'What globalisation means and how TNCs affect LICs',
+      'How globalisation affects NEEs - benefits (FDI, jobs, growth) AND costs (profit repatriation, inequality, environment)',
     ],
   },
   {
@@ -47,6 +49,7 @@ const CHECKLIST_SECTIONS = [
       'The benefits AND costs of TNCs operating in India',
       'The Narmada Dam (top-down) - facts, benefits, and problems',
       'SEWA (bottom-up) - what it does and why it works',
+      'Biogas digesters as appropriate technology in rural India - the full chain (dung in, biogas + slurry out)',
       'Inequalities within India (Kerala vs Bihar, urban vs rural)',
       "India's future challenges (climate, inequality, pollution)",
     ],
