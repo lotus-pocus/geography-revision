@@ -406,6 +406,13 @@ const development = [
         def: "UK-based NGO (formerly ITDG) that designs and promotes appropriate technology for communities in LICs.",
       },
     ],
+    images: [
+      {
+        src: '/images/Biogas.png',
+        caption: 'A biogas digester: manure is fed into an underground anaerobic chamber where decomposition releases methane, which is piped into the home for cooking and heating. Carbon dioxide released during burning is reabsorbed by plants — making it a sustainable, low-carbon energy source.',
+      },
+    ],
+    
     examTip:
       "The biogas/cow dung example is very popular in Edexcel B exams - learn the full chain: dung goes in, biogas comes out for cooking, slurry goes on crops as fertiliser. It ticks multiple boxes: bottom-up, sustainable, improves health, improves food security.",
   },
