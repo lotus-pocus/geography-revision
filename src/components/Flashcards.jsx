@@ -42,7 +42,7 @@ function shuffle(arr) {
 }
 
 function Flashcards({ allTopics }) {
-  const [activeFilter, setActiveFilter] = useState('all');
+  const [activeFilters, setActiveFilters] = useState(new Set());
   const [cardIndex, setCardIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [correct, setCorrect] = useState([]);
@@ -66,16 +66,29 @@ function Flashcards({ allTopics }) {
   const [deck, setDeck] = useState(() => shuffle(allCards));
 
   const filteredDeck = useMemo(() => {
-    if (activeFilter === 'all') return deck;
-    return deck.filter((c) => c.category === activeFilter);
-  }, [deck, activeFilter]);
+    if (activeFilters.size === 0) return deck;
+    return deck.filter((c) => activeFilters.has(c.category));
+  }, [deck, activeFilters]);
 
   const current = filteredDeck[cardIndex] || null;
   const isFinished = cardIndex >= filteredDeck.length - 1 && flipped;
   const config = current ? (CATEGORY_CONFIG[current.category] || {}) : {};
 
-  const handleFilter = (f) => {
-    setActiveFilter(f);
+  const toggleFilter = (key) => {
+    setActiveFilters((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
+    setCardIndex(0);
+    setFlipped(false);
+    setCorrect([]);
+    setIncorrect([]);
+  };
+
+  const clearFilters = () => {
+    setActiveFilters(new Set());
     setCardIndex(0);
     setFlipped(false);
     setCorrect([]);
@@ -97,14 +110,14 @@ function Flashcards({ allTopics }) {
     setFlipped(false);
     setCorrect([]);
     setIncorrect([]);
-    if (activeFilter !== 'all') setActiveFilter('all');
+    setActiveFilters(new Set());
   };
 
   const totalSeen = correct.length + incorrect.length;
   const pct = totalSeen > 0 ? Math.round((correct.length / totalSeen) * 100) : null;
 
   if (!current) {
-    return <div className="flashcards-view"><p className="view-intro">No cards for this category.</p></div>;
+    return <div className="flashcards-view"><p className="view-intro">No cards for this selection.</p></div>;
   }
 
   const emoji = getEmoji(current.term);
@@ -112,27 +125,40 @@ function Flashcards({ allTopics }) {
   return (
     <div className="flashcards-view">
       <p className="view-intro">
-        Tap a card to flip it. Then mark whether you knew it! 🎯 Great for phone revision.
+        Tap topics to build your deck — mix and match as many as you like. Tap a card to flip it. 🎯
       </p>
 
       <div className="fc-filter-row">
         <button
-          className={`fc-cat-btn ${activeFilter === 'all' ? 'active' : ''}`}
-          onClick={() => handleFilter('all')}
+          className={`fc-cat-btn ${activeFilters.size === 0 ? 'active' : ''}`}
+          onClick={clearFilters}
         >
           🗂️ All
         </button>
-        {Object.entries(CATEGORY_CONFIG).map(([key, cfg]) => (
-          <button
-            key={key}
-            className={`fc-cat-btn ${activeFilter === key ? 'active' : ''}`}
-            style={activeFilter === key ? { background: cfg.bg, borderColor: cfg.color, color: cfg.color } : {}}
-            onClick={() => handleFilter(key)}
-          >
-            {cfg.emoji} {cfg.label}
-          </button>
-        ))}
+        {Object.entries(CATEGORY_CONFIG).map(([key, cfg]) => {
+          const isActive = activeFilters.has(key);
+          return (
+            <button
+              key={key}
+              className={`fc-cat-btn ${isActive ? 'active' : ''}`}
+              style={isActive ? { background: cfg.bg, borderColor: cfg.color, color: cfg.color } : {}}
+              onClick={() => toggleFilter(key)}
+            >
+              {cfg.emoji} {cfg.label}
+            </button>
+          );
+        })}
       </div>
+
+      {activeFilters.size > 0 && (
+        <p style={{ fontSize: '0.78rem', color: '#6b7280', marginBottom: '0.75rem' }}>
+          {filteredDeck.length} cards from {activeFilters.size} topic{activeFilters.size !== 1 ? 's' : ''}
+          {' '}·{' '}
+          <button onClick={clearFilters} style={{ background: 'none', border: 'none', color: '#9333ea', fontSize: '0.78rem', cursor: 'pointer', padding: 0, fontWeight: '600' }}>
+            Clear selection
+          </button>
+        </p>
+      )}
 
       <div className="fc-progress-row">
         <div className="fc-progress-track">

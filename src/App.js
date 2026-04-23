@@ -16,7 +16,7 @@ import Flashcards from "./components/Flashcards";
 import MathsHub from "./components/MathsHub";
 import Clinometer from "./components/Clinometer";
 import Search from "./components/Search";
-import ToastNotification from "./components/ToastNotification";
+import Updates from "./components/Updates";
 import "./index.css";
 import About from "./components/About";
 
@@ -113,6 +113,8 @@ function App() {
         );
       case "about":
         return <About />;
+      case "updates":
+        return <Updates />;
       default:
         return null;
     }
@@ -121,8 +123,6 @@ function App() {
   return (
     <div className="app">
       <Header totalTopics={ALL_TOPICS.length} doneCount={done.length} />
-      <ToastNotification />
-
       <main className="main-content">
         <NavTabs activeTab={activeTab} onTabChange={handleTabChange} />
         <div className="tab-content">{renderTab()}</div>

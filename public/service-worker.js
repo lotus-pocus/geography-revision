@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 
-const CACHE_NAME = 'geo-revision-v9';
+const CACHE_NAME = 'geo-revision-v10';
 
 const ASSETS_TO_CACHE = [
   '/',

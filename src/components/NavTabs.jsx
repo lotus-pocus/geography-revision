@@ -8,6 +8,7 @@ const tabs = [
   { id: 'maths',       label: 'Maths Skills' },
   { id: 'search',      label: '🔍 Search' },
   { id: 'about',       label: 'About' },
+  { id: 'updates',     label: '✨ Updates' },
 ];
 
 function NavTabs({ activeTab, onTabChange }) {
