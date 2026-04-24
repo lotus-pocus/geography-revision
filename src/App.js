@@ -19,6 +19,7 @@ import Search from "./components/Search";
 import Updates from "./components/Updates";
 import "./index.css";
 import About from "./components/About";
+import LastMinuteRevision from "./components/LastMinuteRevision";
 
 const ALL_TOPICS = [
   ...hazardousEarth,
@@ -115,6 +116,8 @@ function App() {
         return <About />;
       case "updates":
         return <Updates />;
+      case "lastminute":
+        return <LastMinuteRevision />;
       default:
         return null;
     }

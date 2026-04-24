@@ -10,11 +10,11 @@ const SECTIONS = [
     items: [
       { type: 'fact', text: 'Upper course: V-shaped valleys, waterfalls, interlocking spurs - high energy, lots of vertical erosion.' },
       { type: 'fact', text: 'Middle course: meanders, ox-bow lakes - lateral erosion widens the valley.' },
-      { type: 'fact', text: 'Lower course: floodplains, levées, estuaries - deposition dominates.' },
+      { type: 'fact', text: 'Lower course: floodplains, levees, estuaries - deposition dominates.' },
       { type: 'fact', text: 'Erosion processes: hydraulic action, abrasion, attrition, corrosion (solution).' },
       { type: 'fact', text: 'Transportation: traction (rolling), saltation (bouncing), suspension (floating), solution (dissolved).' },
       { type: 'stat', label: 'Sheffield 2007', text: '90mm of rain in 12 hours (a month\'s worth). River Don flooded. 1,500 homes flooded. £50 million damage.' },
-      { type: 'stat', label: 'Somerset 2013–14', text: 'Prolonged winter flooding. ~600 homes flooded. Rivers Tone and Parrett. Controversy over lack of dredging.' },
+      { type: 'stat', label: 'Somerset 2013-14', text: 'Prolonged winter flooding. ~600 homes flooded. Rivers Tone and Parrett. Controversy over lack of dredging.' },
       { type: 'fact', text: 'Storm hydrograph: lag time = gap between peak rainfall and peak discharge. Short lag = fast run-off = higher flood risk.' },
       { type: 'fact', text: 'Hard engineering: dams, embankments, channel straightening. Expensive, can shift flooding downstream.' },
       { type: 'fact', text: 'Soft engineering: afforestation, flood plain zoning, washlands. Cheaper, more sustainable.' },
@@ -57,13 +57,7 @@ const SECTIONS = [
       { type: 'stat', label: 'Malawi', text: 'GNI per capita ~$400. Life expectancy ~64 years. HDI ~0.50. One of the world\'s poorest countries. Relies heavily on subsistence farming.' },
       { type: 'fact', text: 'TNCs (Transnational Corporations) can bring jobs and investment but profits go overseas and wages may be low.' },
       { type: 'fact', text: 'Globalisation: increased interconnection of the world through trade, migration, communication, and investment.' },
-      { type: 'fact', text: 'How globalisation helps NEEs: FDI chain - foreign investment → factories/offices → jobs → wages → tax revenue → government spends on schools and hospitals → development improves.' },
-      { type: 'fact', text: 'Costs of globalisation for NEEs: profits repatriated to HICs, inequality increases (cities boom, rural areas left behind), environmental damage, worker exploitation.' },
-      { type: 'stat', label: 'China vs India', text: "China grew through manufacturing FDI - world's factory. India grew through services/IT outsourcing - Bangalore tech hub. Both lifted millions out of poverty but inequality increased." },
-      { type: 'fact', text: 'Intermediate/appropriate technology: simple, affordable technology local people can use and maintain themselves - e.g. biogas digesters.' },
-      { type: 'stat', label: 'Biogas digesters', text: 'Cow dung sealed in underground tank - bacteria break it down - biogas produced for cooking and lighting - leftover slurry used as crop fertiliser. Reduces indoor smoke pollution. Used widely in rural India.' },
       { type: 'tip', text: 'When evaluating top-down vs bottom-up: top-down = large scale benefit but can displace and ignore local needs. Bottom-up = sustainable but small scale.' },
-      { type: 'tip', text: 'Biogas exam chain: dung IN - biogas OUT (cooking/lighting) + slurry OUT (fertiliser). Ticks multiple boxes: bottom-up, sustainable, improves health, improves food security.' },
     ],
   },
   {
@@ -80,7 +74,6 @@ const SECTIONS = [
       { type: 'fact', text: 'TNCs in India: Amazon, Google, Microsoft, Suzuki (Maruti), Vodafone. Bring investment and jobs but profits leave the country.' },
       { type: 'stat', label: 'Sardar Sarovar Dam (top-down)', text: 'On the Narmada River, Gujarat. Provides water for 20 million people. Generates 1,450 MW electricity. BUT displaced 320,000+ people, many tribal communities.' },
       { type: 'stat', label: 'SEWA (bottom-up)', text: 'Self Employed Women\'s Association. Founded Ahmedabad 1972. 2 million members. Provides micro-loans, legal support, healthcare for informal female workers.' },
-      { type: 'stat', label: 'Biogas digesters (appropriate tech)', text: 'Cow dung sealed in underground tank - produces biogas for cooking and lighting, and slurry for crop fertiliser. Reduces indoor smoke pollution. Community-maintained - no outside experts needed.' },
       { type: 'fact', text: 'Inequalities within India: urban vs rural, gender gap (female literacy ~65% vs male ~82%), north vs south divide.' },
       { type: 'tip', text: 'India\'s future: growing middle class, space programme, nuclear power, climate challenges, water scarcity, pollution in cities (Delhi AQI regularly "hazardous").' },
     ],
@@ -95,8 +88,8 @@ const SECTIONS = [
       { type: 'tip', text: '2-mark questions: give a clear point + a brief supporting detail. No need for examples.' },
       { type: 'tip', text: '4-mark questions: two developed points, each with evidence or an example.' },
       { type: 'tip', text: '6-mark questions: structured answer - two or three points, each with case study detail, evaluated (advantages AND disadvantages or limits).' },
-      { type: 'tip', text: '"Explain why…" = give a reason AND develop it with a consequence or mechanism.' },
-      { type: 'tip', text: '"Evaluate…" or "Assess…" = you MUST give a balanced view - say what works AND what doesn\'t, then reach a conclusion.' },
+      { type: 'tip', text: '"Explain why..." = give a reason AND develop it with a consequence or mechanism.' },
+      { type: 'tip', text: '"Evaluate..." or "Assess..." = you MUST give a balanced view - say what works AND what doesn\'t, then reach a conclusion.' },
       { type: 'tip', text: 'Use named places and statistics: "The Holderness coast erodes at up to 2m per year" is much stronger than "a coastline erodes quickly".' },
       { type: 'tip', text: 'For fieldwork questions: refer to your specific method, why you chose it, and any limitations (e.g. sample size, human error, weather).' },
       { type: 'tip', text: 'Maths questions: show every step. You can get method marks even if the final answer is wrong.' },
@@ -105,11 +98,13 @@ const SECTIONS = [
   },
 ];
 
+const ALL_IDS = SECTIONS.map(s => s.id);
+
 function Badge({ type }) {
   const styles = {
     fact: { bg: '#f3f4f6', color: '#374151', label: 'FACT' },
     stat: { bg: '#fef9c3', color: '#854d0e', label: 'STAT' },
-    tip: { bg: '#dcfce7', color: '#14532d', label: 'TIP' },
+    tip:  { bg: '#dcfce7', color: '#14532d', label: 'TIP' },
   };
   const s = styles[type] || styles.fact;
   return (
@@ -119,25 +114,91 @@ function Badge({ type }) {
   );
 }
 
-export default function LastMinuteRevision() {
-  const [open, setOpen] = useState({ rivers: false, coasts: false, development: false, india: false, examtips: false });
+function FilterChip({ section, active, onToggle }) {
+  return (
+    <button
+      onClick={() => onToggle(section.id)}
+      style={{
+        padding: '6px 12px',
+        borderRadius: '20px',
+        border: `1.5px solid ${active ? section.color : '#d1d5db'}`,
+        background: active ? section.bg : '#ffffff',
+        color: active ? section.color : '#6b7280',
+        fontWeight: active ? '700' : '500',
+        fontSize: '13px',
+        cursor: 'pointer',
+        transition: 'all 0.15s ease',
+        whiteSpace: 'nowrap',
+      }}
+    >
+      {section.title}
+    </button>
+  );
+}
 
-  const toggle = (id) => setOpen(o => ({ ...o, [id]: !o[id] }));
+export default function LastMinuteRevision() {
+  const [selected, setSelected] = useState(new Set(ALL_IDS));
+  const [open, setOpen] = useState({});
+
+  const toggleFilter = (id) => {
+    setSelected(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        if (next.size === 1) return prev; // keep at least one selected
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  };
+
+  const toggleSection = (id) => setOpen(o => ({ ...o, [id]: !o[id] }));
+
+  const visibleSections = SECTIONS.filter(s => selected.has(s.id));
 
   return (
     <div style={{ maxWidth: 600, margin: '0 auto', paddingBottom: '3rem' }}>
-      <div style={{ background: '#fef2f2', border: '0.5px solid #fecaca', borderRadius: '12px', padding: '14px 16px', marginBottom: '1.5rem' }}>
-        <p style={{ fontSize: '15px', fontWeight: '600', color: '#991b1b', margin: '0 0 4px' }}>⏰ Exam tomorrow - last minute revision</p>
+
+      {/* Instruction banner */}
+      <div style={{ background: '#fef2f2', border: '0.5px solid #fecaca', borderRadius: '12px', padding: '14px 16px', marginBottom: '1.25rem' }}>
+        <p style={{ fontSize: '15px', fontWeight: '600', color: '#991b1b', margin: '0 0 4px' }}>⏰ Last minute revision</p>
         <p style={{ fontSize: '13px', color: '#7f1d1d', margin: 0, lineHeight: 1.6 }}>
-          Key facts, case study statistics, and exam technique tips. Tap each section to expand. Focus on the <strong>STAT</strong> badges - examiners love specific numbers.
+          Select the topics your exam covers using the filters below - only those sections will show. Focus on the <strong>STAT</strong> badges - examiners love specific numbers.
         </p>
       </div>
 
+      {/* Topic filter chips */}
+      <div style={{ marginBottom: '1.25rem' }}>
+        <p style={{ fontSize: '12px', fontWeight: '600', color: '#6b7280', margin: '0 0 8px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          Filter by topic
+        </p>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+          {SECTIONS.map(section => (
+            <FilterChip
+              key={section.id}
+              section={section}
+              active={selected.has(section.id)}
+              onToggle={toggleFilter}
+            />
+          ))}
+        </div>
+        {selected.size < SECTIONS.length && (
+          <button
+            onClick={() => setSelected(new Set(ALL_IDS))}
+            style={{ marginTop: '8px', fontSize: '12px', color: '#6b7280', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', padding: 0 }}
+          >
+            Show all topics
+          </button>
+        )}
+      </div>
+
+      {/* Sections */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-        {SECTIONS.map(section => (
+        {visibleSections.map(section => (
           <div key={section.id} style={{ border: `0.5px solid ${section.border}`, borderRadius: '12px', overflow: 'hidden' }}>
             <button
-              onClick={() => toggle(section.id)}
+              onClick={() => toggleSection(section.id)}
               style={{ width: '100%', padding: '14px 16px', background: open[section.id] ? section.bg : '#ffffff', border: 'none', cursor: 'pointer', textAlign: 'left', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
             >
               <span style={{ fontWeight: '600', fontSize: '15px', color: '#1a1a2e' }}>{section.title}</span>
@@ -161,6 +222,7 @@ export default function LastMinuteRevision() {
         ))}
       </div>
 
+      {/* Footer encouragement */}
       <div style={{ background: '#1a1a2e', borderRadius: '12px', padding: '16px', marginTop: '1.5rem', textAlign: 'center' }}>
         <p style={{ fontSize: '15px', fontWeight: '600', color: '#ffffff', margin: '0 0 6px' }}>You've got this 💪</p>
         <p style={{ fontSize: '13px', color: '#9ca3af', margin: 0, lineHeight: 1.6 }}>

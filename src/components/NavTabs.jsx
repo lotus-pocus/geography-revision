@@ -9,6 +9,7 @@ const tabs = [
   { id: 'search',      label: '🔍 Search' },
   { id: 'about',       label: 'About' },
   { id: 'updates',     label: '✨ Updates' },
+  { id: 'lastminute', label: '⏰ Last Minute' },
 ];
 
 function NavTabs({ activeTab, onTabChange }) {
