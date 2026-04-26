@@ -21,6 +21,7 @@ const SECTIONS = [
 
 function TopicsView({ allTopics, done, onMarkDone, selectedId, onSelectId }) {
   const [activePaper, setActivePaper] = useState('all');
+  const [theoriesOpen, setTheoriesOpen] = useState(false);
 
   const selectedTopic = selectedId
     ? allTopics.find((t) => t.id === selectedId)
@@ -41,11 +42,20 @@ function TopicsView({ allTopics, done, onMarkDone, selectedId, onSelectId }) {
     ? SECTIONS
     : SECTIONS.filter((s) => s.paper === activePaper);
 
-  const seenUnitLabels = new Set();
+  // Key Theories only relevant to Paper 1
+  const showTheories = activePaper === 'all' || activePaper === 'paper1';
+
+  // Track unit labels already rendered so we don't repeat them.
+  // If theories section is showing, it already renders the Paper 1 unit label,
+  // so pre-seed the set to suppress the duplicate from the first topic section.
+  const seenUnitLabels = new Set(
+    showTheories ? ['Paper 1 - Global Geographical Issues'] : []
+  );
 
   return (
     <div className="topics-view">
 
+      {/* Paper filter */}
       <div className="paper-filter">
         {PAPERS.map((paper) => (
           <button
@@ -70,8 +80,24 @@ function TopicsView({ allTopics, done, onMarkDone, selectedId, onSelectId }) {
         ))}
       </div>
 
-      <KeyTheories />
+      {/* Key Theories — collapsible, Paper 1 only */}
+      {showTheories && (
+        <div className="topic-section">
+          <p className="unit-label">Paper 1 - Global Geographical Issues</p>
+          <button
+            className="theories-toggle"
+            onClick={() => setTheoriesOpen(o => !o)}
+          >
+            <h2 className="section-heading theories-toggle-heading">
+              📖 Key Theories to Know
+            </h2>
+            <span className="theories-toggle-chevron">{theoriesOpen ? '▲' : '▼'}</span>
+          </button>
+          {theoriesOpen && <KeyTheories />}
+        </div>
+      )}
 
+      {/* Topic sections */}
       {visibleSections.map((section) => {
         const sectionTopics = allTopics.filter((t) => t.category === section.key);
         const showUnitLabel = section.unitLabel && !seenUnitLabels.has(section.unitLabel);
