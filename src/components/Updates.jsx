@@ -1,6 +1,16 @@
 const UPDATES = [
   {
     date: 'April 2026',
+    title: 'Paper filter, DTM theory & housekeeping',
+    items: [
+      'Topics tab now has a Paper filter. Browse by Paper 1, Paper 2, or all topics at once',
+      'Paper 3 (People & Environment) shown as Coming Soon - content to follow',
+      'New theory added: Demographic Transition Model (DTM) - stages, criticism and exam tips',
+      'Key Theories comparison table expanded to include DTM alongside Rostow and Frank',
+    ],
+  },
+  {
+    date: 'April 2026',
     title: 'Content & navigation updates',
     items: [
       'New topic: Intermediate / Appropriate Technology (including biogas digesters)',

@@ -40,14 +40,35 @@ const THEORIES = [
     criticism: 'Frank\'s theory can seem too negative. It suggests LICs can never escape poverty without a complete break from the global system. Some countries (like South Korea, China) have developed rapidly within the global system.',
     examUse: 'Use Frank when asked about inequality, why trade keeps LICs poor, bottom-up development, or to criticise Rostow. The Malawi tariff example is perfect evidence for Frank\'s theory.',
   },
+  {
+    id: 'dtm',
+    emoji: '👶',
+    name: 'Demographic Transition Model (DTM)',
+    year: '1929',
+    tagline: '"As countries develop, their birth and death rates change in a predictable pattern."',
+    colour: '#0891b2',
+    bg: '#f0f9ff',
+    border: '#bae6fd',
+    plainEnglish: `The Demographic Transition Model (DTM) was developed by Warren Thompson in 1929. It shows how birth rates and death rates change as a country develops economically. As countries get richer, death rates fall first (better healthcare), then birth rates fall too (education, women working). The result is that population grows in the middle stages, then stabilises. It links population change directly to development - so it's both a population model AND a development model.`,
+    stages: [
+      { n: '1', label: 'High Fluctuating', desc: 'High birth rate AND high death rate. Population stays low and unstable. E.g. pre-industrial societies. Few countries are here today.' },
+      { n: '2', label: 'Early Expanding', desc: 'Death rate falls sharply (better sanitation, medicine, food). Birth rate stays high. Population grows FAST. E.g. many LICs like Mali.' },
+      { n: '3', label: 'Late Expanding', desc: 'Birth rate begins to fall (women educated, contraception, less need for child labour). Death rate stays low. Growth slows. E.g. India, Brazil (NEEs).' },
+      { n: '4', label: 'Low Fluctuating', desc: 'Both birth rate AND death rate are low. Population is large but stable. E.g. UK, USA, most HICs.' },
+      { n: '5', label: 'Decline (not always shown)', desc: 'Birth rate drops BELOW death rate. Population shrinks. E.g. Japan, Germany. This stage was added later.' },
+    ],
+    criticism: 'The DTM was based on Western European history and assumes all countries follow the same path - similar to Rostow\'s flaw. Some countries (e.g. in sub-Saharan Africa) have stayed in Stage 2 longer than expected. It also doesn\'t account for migration, which can dramatically change population size.',
+    examUse: 'Use the DTM when asked about population change, birth/death rates, or how development affects population. You might be given a graph and asked to identify the stage - look at whether birth rate, death rate, or both are high or low. Link it to development: Stage 2/3 = LIC/NEE, Stage 4 = HIC.',
+  },
 ];
 
 const COMPARISON = [
-  { aspect: 'Attitude', rostow: 'Optimistic - all countries will develop', frank: 'Pessimistic - the system keeps LICs poor' },
-  { aspect: 'Who\'s to blame?', rostow: 'Nobody - it just takes time', frank: 'HICs - they exploit LICs deliberately' },
-  { aspect: 'Solution', rostow: 'Investment, industry, follow the West', frank: 'Break free from HIC control, trade with other LICs' },
-  { aspect: 'Development type', rostow: 'Top-down (big projects, foreign investment)', frank: 'Bottom-up (local, community-led)' },
-  { aspect: 'Real world example', rostow: 'Narmada Dam (India) large top-down project', frank: 'SEWA / Malawi tariffs - exploited by global trade rules' },
+  { aspect: 'What it explains', rostow: 'How economies develop through stages', frank: 'Why rich countries keep poor countries poor', dtm: 'How birth/death rates change as countries develop' },
+  { aspect: 'Attitude', rostow: 'Optimistic - all countries will develop', frank: 'Pessimistic - the system keeps LICs poor', dtm: 'Neutral - describes a pattern, not a cause' },
+  { aspect: 'Who\'s to blame?', rostow: 'Nobody - it just takes time', frank: 'HICs - they exploit LICs deliberately', dtm: 'Nobody - it\'s a natural demographic process' },
+  { aspect: 'Solution', rostow: 'Investment, industry, follow the West', frank: 'Break free from HIC control, trade with other LICs', dtm: 'Education, healthcare, women\'s rights speed up transition' },
+  { aspect: 'Development type', rostow: 'Top-down (big projects, foreign investment)', frank: 'Bottom-up (local, community-led)', dtm: 'Not prescriptive - describes outcomes of development' },
+  { aspect: 'Real world example', rostow: 'Narmada Dam (India) - large top-down project', frank: 'Malawi tariffs - exploited by global trade rules', dtm: 'India in Stage 3 (falling birth rate as it develops)' },
 ];
 
 function TheoryCard({ theory }) {
@@ -105,7 +126,7 @@ function KeyTheories() {
       <div className="key-theories-header">
         <div>
           <h2 className="key-theories-title">📖 Key Theories to Know</h2>
-          <p className="key-theories-subtitle">These two theories come up constantly in exams. Make sure you know both and can compare them!</p>
+          <p className="key-theories-subtitle">These theories come up constantly in exams. Make sure you know all three and can compare them!</p>
         </div>
       </div>
 
@@ -114,28 +135,30 @@ function KeyTheories() {
       </div>
 
       <button className="theory-compare-btn" onClick={() => setShowComparison(o => !o)}>
-        {showComparison ? '▲ Hide comparison' : '⚖️ Compare Rostow vs Frank side by side'}
+        {showComparison ? '▲ Hide comparison' : '⚖️ Compare all three theories side by side'}
       </button>
 
       {showComparison && (
         <div className="theory-comparison">
-          <h3 className="theory-comparison-title">Rostow vs Frank at a glance</h3>
-          <div className="theory-comparison-table">
+          <h3 className="theory-comparison-title">Rostow vs Frank vs DTM at a glance</h3>
+          <div className="theory-comparison-table theory-comparison-table--three">
             <div className="theory-comparison-row theory-comparison-row--header">
               <span></span>
               <span style={{ color: '#d97706' }}>📈 Rostow</span>
               <span style={{ color: '#9333ea' }}>🔗 Frank</span>
+              <span style={{ color: '#0891b2' }}>👶 DTM</span>
             </div>
             {COMPARISON.map((row, i) => (
               <div key={i} className="theory-comparison-row">
                 <span className="theory-comparison-aspect">{row.aspect}</span>
                 <span className="theory-comparison-cell">{row.rostow}</span>
                 <span className="theory-comparison-cell">{row.frank}</span>
+                <span className="theory-comparison-cell">{row.dtm}</span>
               </div>
             ))}
           </div>
           <div className="theory-memory-tip">
-            <strong>💡 Memory tip:</strong> Rostow = hopeful ladder 🪜 (climb the steps and you'll get there). Frank = broken chain ⛓️ (HICs are holding LICs back).
+            <strong>💡 Memory tips:</strong> Rostow = hopeful ladder 🪜 (climb the steps and you'll get there). Frank = broken chain ⛓️ (HICs are holding LICs back). DTM = a graph with two lines 📉📈 (death rate drops first, then birth rate follows).
           </div>
         </div>
       )}

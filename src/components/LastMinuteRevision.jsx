@@ -1,8 +1,74 @@
 import { useState } from 'react';
 
+const PAPERS = [
+  { key: 'all',    label: 'All Papers', subtitle: null },
+  { key: 'paper1', label: 'Paper 1',    subtitle: 'Global Issues' },
+  { key: 'paper2', label: 'Paper 2',    subtitle: 'UK Issues' },
+  { key: 'paper3', label: 'Paper 3',    subtitle: 'People & Env', disabled: true },
+];
+
 const SECTIONS = [
   {
+    id: 'hazardous',
+    paper: 'paper1',
+    title: '🌋 Hazardous Earth',
+    color: '#b91c1c',
+    bg: '#fef2f2',
+    border: '#fecaca',
+    items: [
+      { type: 'fact', text: 'Global atmospheric circulation: three cells per hemisphere (Hadley, Ferrel, Polar). Rising air = low pressure = rain. Sinking air = high pressure = dry.' },
+      { type: 'fact', text: 'Tropical storms form over warm ocean water (above 27°C), between 5-20° from equator. Need Coriolis effect to spin — don\'t form at equator itself.' },
+      { type: 'fact', text: 'Tropical storm structure: eye (calm, low pressure), eyewall (strongest winds and rain), spiral rainbands.' },
+      { type: 'fact', text: 'Plate boundaries: constructive (plates move apart, shield volcanoes, weak earthquakes), destructive (subduction, explosive volcanoes, strong earthquakes), conservative (plates slide past, earthquakes only).' },
+      { type: 'fact', text: 'UK note: Edexcel calls conservative boundaries "conservative" — some textbooks say "transform". Same thing.' },
+      { type: 'stat', label: 'Typhoon Haiyan 2013 (HIC vs LIC contrast)', text: 'Philippines (LIC): 6,300+ deaths, 4 million displaced, $13 billion damage. Compare with well-prepared HICs — same storm strength, far fewer deaths.' },
+      { type: 'fact', text: 'Climate change link: warmer oceans = more intense tropical storms. Frequency may stay similar but peak intensity is increasing.' },
+      { type: 'fact', text: 'Responses to hazards: immediate (search and rescue, emergency aid) vs long-term (rebuilding, hazard-resistant buildings, prediction systems).' },
+      { type: 'tip', text: 'Hazard question with an LIC/HIC comparison: always link death toll and damage to level of development — emergency services, building quality, warning systems.' },
+      { type: 'tip', text: 'Climate graph question: look at temperature range (line) and rainfall pattern (bars). Identify the season (wet/dry) and latitude clues.' },
+    ],
+  },
+  {
+    id: 'development',
+    paper: 'paper1',
+    title: '🌍 Development & Globalisation',
+    color: '#9333ea',
+    bg: '#faf5ff',
+    border: '#d8b4fe',
+    items: [
+      { type: 'fact', text: 'Measuring development: GNI per capita, HDI (income + education + life expectancy), birth/death rates, literacy rate.' },
+      { type: 'fact', text: "Rostow's 5 stages: Traditional society → Pre-conditions → Take-off → Drive to maturity → Mass consumption. Critics: ignores colonialism." },
+      { type: 'fact', text: "Frank's Dependency Theory: core (HICs) exploits periphery (LICs) through unequal trade. LICs stay poor because of this relationship." },
+      { type: 'fact', text: 'DTM stages: Stage 1 (high birth + death rate) → Stage 2 (death rate falls, population booms) → Stage 3 (birth rate falls) → Stage 4 (both low, stable population). Stage 5 = population decline.' },
+      { type: 'fact', text: 'Top-down development: large-scale, government or international body funded (e.g. dams, motorways). Benefits many but can displace communities.' },
+      { type: 'fact', text: 'Bottom-up development: community-led, small-scale, meets local needs (e.g. biogas digesters, micro-finance, village water pumps). More sustainable.' },
+      { type: 'stat', label: 'Malawi', text: 'GNI per capita ~$400. Life expectancy ~64 years. HDI ~0.50. One of the world\'s poorest countries. Relies heavily on subsistence farming.' },
+      { type: 'fact', text: 'TNCs (Transnational Corporations) can bring jobs and investment but profits go overseas and wages may be low.' },
+      { type: 'tip', text: 'When evaluating top-down vs bottom-up: top-down = large scale benefit but can displace and ignore local needs. Bottom-up = sustainable but small scale.' },
+    ],
+  },
+  {
+    id: 'india',
+    paper: 'paper1',
+    title: '🇮🇳 India Case Study',
+    color: '#D85A30',
+    bg: '#fff7ed',
+    border: '#fed7aa',
+    items: [
+      { type: 'stat', label: 'Key facts', text: 'Population ~1.4 billion (world\'s most populous). GDP ~$3.5 trillion (5th largest). HDI ~0.633 (ranked ~130th). Median age ~28.' },
+      { type: 'fact', text: 'India has huge regional inequality: Mumbai and Bangalore are wealthy; rural Bihar and Uttar Pradesh remain very poor.' },
+      { type: 'fact', text: 'Globalisation in India: IT sector (Bangalore), manufacturing (textiles, cars), call centres - all driven by TNCs and outsourcing.' },
+      { type: 'stat', label: 'IT sector', text: 'India\'s IT industry generates ~$200 billion/year and employs over 4 million people. Bangalore = "India\'s Silicon Valley".' },
+      { type: 'fact', text: 'TNCs in India: Amazon, Google, Microsoft, Suzuki (Maruti), Vodafone. Bring investment and jobs but profits leave the country.' },
+      { type: 'stat', label: 'Sardar Sarovar Dam (top-down)', text: 'On the Narmada River, Gujarat. Provides water for 20 million people. Generates 1,450 MW electricity. BUT displaced 320,000+ people, many tribal communities.' },
+      { type: 'stat', label: 'SEWA (bottom-up)', text: 'Self Employed Women\'s Association. Founded Ahmedabad 1972. 2 million members. Provides micro-loans, legal support, healthcare for informal female workers.' },
+      { type: 'fact', text: 'Inequalities within India: urban vs rural, gender gap (female literacy ~65% vs male ~82%), north vs south divide.' },
+      { type: 'tip', text: 'India\'s future: growing middle class, space programme, nuclear power, climate challenges, water scarcity, pollution in cities (Delhi AQI regularly "hazardous").' },
+    ],
+  },
+  {
     id: 'rivers',
+    paper: 'paper2',
     title: '🌊 Rivers & Flooding',
     color: '#185FA5',
     bg: '#eff6ff',
@@ -10,7 +76,7 @@ const SECTIONS = [
     items: [
       { type: 'fact', text: 'Upper course: V-shaped valleys, waterfalls, interlocking spurs - high energy, lots of vertical erosion.' },
       { type: 'fact', text: 'Middle course: meanders, ox-bow lakes - lateral erosion widens the valley.' },
-      { type: 'fact', text: 'Lower course: floodplains, levees, estuaries - deposition dominates.' },
+      { type: 'fact', text: 'Lower course: floodplains, levées, estuaries - deposition dominates.' },
       { type: 'fact', text: 'Erosion processes: hydraulic action, abrasion, attrition, corrosion (solution).' },
       { type: 'fact', text: 'Transportation: traction (rolling), saltation (bouncing), suspension (floating), solution (dissolved).' },
       { type: 'stat', label: 'Sheffield 2007', text: '90mm of rain in 12 hours (a month\'s worth). River Don flooded. 1,500 homes flooded. £50 million damage.' },
@@ -23,6 +89,7 @@ const SECTIONS = [
   },
   {
     id: 'coasts',
+    paper: 'paper2',
     title: '🏖️ Coasts',
     color: '#059669',
     bg: '#ecfdf5',
@@ -43,43 +110,8 @@ const SECTIONS = [
     ],
   },
   {
-    id: 'development',
-    title: '🌍 Development & Globalisation',
-    color: '#9333ea',
-    bg: '#faf5ff',
-    border: '#d8b4fe',
-    items: [
-      { type: 'fact', text: 'Measuring development: GNI per capita, HDI (income + education + life expectancy), birth/death rates, literacy rate.' },
-      { type: 'fact', text: "Rostow's 5 stages: Traditional society → Pre-conditions → Take-off → Drive to maturity → Mass consumption. Critics: ignores colonialism." },
-      { type: 'fact', text: "Frank's Dependency Theory: core (HICs) exploits periphery (LICs) through unequal trade. LICs stay poor because of this relationship." },
-      { type: 'fact', text: 'Top-down development: large-scale, government or international body funded (e.g. dams, motorways). Benefits many but can displace communities.' },
-      { type: 'fact', text: 'Bottom-up development: community-led, small-scale, meets local needs (e.g. micro-finance, village water pumps). More sustainable.' },
-      { type: 'stat', label: 'Malawi', text: 'GNI per capita ~$400. Life expectancy ~64 years. HDI ~0.50. One of the world\'s poorest countries. Relies heavily on subsistence farming.' },
-      { type: 'fact', text: 'TNCs (Transnational Corporations) can bring jobs and investment but profits go overseas and wages may be low.' },
-      { type: 'fact', text: 'Globalisation: increased interconnection of the world through trade, migration, communication, and investment.' },
-      { type: 'tip', text: 'When evaluating top-down vs bottom-up: top-down = large scale benefit but can displace and ignore local needs. Bottom-up = sustainable but small scale.' },
-    ],
-  },
-  {
-    id: 'india',
-    title: '🇮🇳 India Case Study',
-    color: '#D85A30',
-    bg: '#fff7ed',
-    border: '#fed7aa',
-    items: [
-      { type: 'stat', label: 'Key facts', text: 'Population ~1.4 billion (world\'s most populous). GDP ~$3.5 trillion (5th largest). HDI ~0.633 (ranked ~130th). Median age ~28.' },
-      { type: 'fact', text: 'India has huge regional inequality: Mumbai and Bangalore are wealthy; rural Bihar and Uttar Pradesh remain very poor.' },
-      { type: 'fact', text: 'Globalisation in India: IT sector (Bangalore), manufacturing (textiles, cars), call centres - all driven by TNCs and outsourcing.' },
-      { type: 'stat', label: 'IT sector', text: 'India\'s IT industry generates ~$200 billion/year and employs over 4 million people. Bangalore = "India\'s Silicon Valley".' },
-      { type: 'fact', text: 'TNCs in India: Amazon, Google, Microsoft, Suzuki (Maruti), Vodafone. Bring investment and jobs but profits leave the country.' },
-      { type: 'stat', label: 'Sardar Sarovar Dam (top-down)', text: 'On the Narmada River, Gujarat. Provides water for 20 million people. Generates 1,450 MW electricity. BUT displaced 320,000+ people, many tribal communities.' },
-      { type: 'stat', label: 'SEWA (bottom-up)', text: 'Self Employed Women\'s Association. Founded Ahmedabad 1972. 2 million members. Provides micro-loans, legal support, healthcare for informal female workers.' },
-      { type: 'fact', text: 'Inequalities within India: urban vs rural, gender gap (female literacy ~65% vs male ~82%), north vs south divide.' },
-      { type: 'tip', text: 'India\'s future: growing middle class, space programme, nuclear power, climate challenges, water scarcity, pollution in cities (Delhi AQI regularly "hazardous").' },
-    ],
-  },
-  {
     id: 'examtips',
+    paper: 'all',
     title: '✏️ Exam Technique',
     color: '#374151',
     bg: '#f9fafb',
@@ -88,8 +120,8 @@ const SECTIONS = [
       { type: 'tip', text: '2-mark questions: give a clear point + a brief supporting detail. No need for examples.' },
       { type: 'tip', text: '4-mark questions: two developed points, each with evidence or an example.' },
       { type: 'tip', text: '6-mark questions: structured answer - two or three points, each with case study detail, evaluated (advantages AND disadvantages or limits).' },
-      { type: 'tip', text: '"Explain why..." = give a reason AND develop it with a consequence or mechanism.' },
-      { type: 'tip', text: '"Evaluate..." or "Assess..." = you MUST give a balanced view - say what works AND what doesn\'t, then reach a conclusion.' },
+      { type: 'tip', text: '"Explain why…" = give a reason AND develop it with a consequence or mechanism.' },
+      { type: 'tip', text: '"Evaluate…" or "Assess…" = you MUST give a balanced view - say what works AND what doesn\'t, then reach a conclusion.' },
       { type: 'tip', text: 'Use named places and statistics: "The Holderness coast erodes at up to 2m per year" is much stronger than "a coastline erodes quickly".' },
       { type: 'tip', text: 'For fieldwork questions: refer to your specific method, why you chose it, and any limitations (e.g. sample size, human error, weather).' },
       { type: 'tip', text: 'Maths questions: show every step. You can get method marks even if the final answer is wrong.' },
@@ -98,13 +130,11 @@ const SECTIONS = [
   },
 ];
 
-const ALL_IDS = SECTIONS.map(s => s.id);
-
 function Badge({ type }) {
   const styles = {
     fact: { bg: '#f3f4f6', color: '#374151', label: 'FACT' },
     stat: { bg: '#fef9c3', color: '#854d0e', label: 'STAT' },
-    tip:  { bg: '#dcfce7', color: '#14532d', label: 'TIP' },
+    tip:  { bg: '#dcfce7', color: '#14532d', label: 'TIP'  },
   };
   const s = styles[type] || styles.fact;
   return (
@@ -114,91 +144,57 @@ function Badge({ type }) {
   );
 }
 
-function FilterChip({ section, active, onToggle }) {
-  return (
-    <button
-      onClick={() => onToggle(section.id)}
-      style={{
-        padding: '6px 12px',
-        borderRadius: '20px',
-        border: `1.5px solid ${active ? section.color : '#d1d5db'}`,
-        background: active ? section.bg : '#ffffff',
-        color: active ? section.color : '#6b7280',
-        fontWeight: active ? '700' : '500',
-        fontSize: '13px',
-        cursor: 'pointer',
-        transition: 'all 0.15s ease',
-        whiteSpace: 'nowrap',
-      }}
-    >
-      {section.title}
-    </button>
-  );
-}
-
 export default function LastMinuteRevision() {
-  const [selected, setSelected] = useState(new Set(ALL_IDS));
+  const [activePaper, setActivePaper] = useState('all');
   const [open, setOpen] = useState({});
 
-  const toggleFilter = (id) => {
-    setSelected(prev => {
-      const next = new Set(prev);
-      if (next.has(id)) {
-        if (next.size === 1) return prev; // keep at least one selected
-        next.delete(id);
-      } else {
-        next.add(id);
-      }
-      return next;
-    });
-  };
+  const toggle = (id) => setOpen(o => ({ ...o, [id]: !o[id] }));
 
-  const toggleSection = (id) => setOpen(o => ({ ...o, [id]: !o[id] }));
-
-  const visibleSections = SECTIONS.filter(s => selected.has(s.id));
+  const visibleSections = SECTIONS.filter(s =>
+    activePaper === 'all' || s.paper === activePaper || s.paper === 'all'
+  );
 
   return (
     <div style={{ maxWidth: 600, margin: '0 auto', paddingBottom: '3rem' }}>
 
-      {/* Instruction banner */}
-      <div style={{ background: '#fef2f2', border: '0.5px solid #fecaca', borderRadius: '12px', padding: '14px 16px', marginBottom: '1.25rem' }}>
+      {/* Paper filter */}
+      <div className="paper-filter" style={{ marginBottom: '1rem' }}>
+        {PAPERS.map((paper) => (
+          <button
+            key={paper.key}
+            className={[
+              'paper-filter-btn',
+              activePaper === paper.key ? 'paper-filter-btn--active' : '',
+              paper.disabled ? 'paper-filter-btn--disabled' : '',
+            ].join(' ')}
+            onClick={() => !paper.disabled && setActivePaper(paper.key)}
+            disabled={paper.disabled}
+            title={paper.disabled ? 'Coming soon' : undefined}
+          >
+            <span className="paper-filter-label">{paper.label}</span>
+            {paper.subtitle && (
+              <span className="paper-filter-subtitle">{paper.subtitle}</span>
+            )}
+            {paper.disabled && (
+              <span className="paper-filter-coming-soon">Coming soon</span>
+            )}
+          </button>
+        ))}
+      </div>
+
+      {/* Intro banner */}
+      <div style={{ background: '#fef2f2', border: '0.5px solid #fecaca', borderRadius: '12px', padding: '14px 16px', marginBottom: '1.5rem' }}>
         <p style={{ fontSize: '15px', fontWeight: '600', color: '#991b1b', margin: '0 0 4px' }}>⏰ Last minute revision</p>
         <p style={{ fontSize: '13px', color: '#7f1d1d', margin: 0, lineHeight: 1.6 }}>
-          Select the topics your exam covers using the filters below - only those sections will show. Focus on the <strong>STAT</strong> badges - examiners love specific numbers.
+          Key facts, case study statistics, and exam technique tips. Tap each section to expand. Focus on the <strong>STAT</strong> badges - examiners love specific numbers.
         </p>
       </div>
 
-      {/* Topic filter chips */}
-      <div style={{ marginBottom: '1.25rem' }}>
-        <p style={{ fontSize: '12px', fontWeight: '600', color: '#6b7280', margin: '0 0 8px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-          Filter by topic
-        </p>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-          {SECTIONS.map(section => (
-            <FilterChip
-              key={section.id}
-              section={section}
-              active={selected.has(section.id)}
-              onToggle={toggleFilter}
-            />
-          ))}
-        </div>
-        {selected.size < SECTIONS.length && (
-          <button
-            onClick={() => setSelected(new Set(ALL_IDS))}
-            style={{ marginTop: '8px', fontSize: '12px', color: '#6b7280', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', padding: 0 }}
-          >
-            Show all topics
-          </button>
-        )}
-      </div>
-
-      {/* Sections */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
         {visibleSections.map(section => (
           <div key={section.id} style={{ border: `0.5px solid ${section.border}`, borderRadius: '12px', overflow: 'hidden' }}>
             <button
-              onClick={() => toggleSection(section.id)}
+              onClick={() => toggle(section.id)}
               style={{ width: '100%', padding: '14px 16px', background: open[section.id] ? section.bg : '#ffffff', border: 'none', cursor: 'pointer', textAlign: 'left', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
             >
               <span style={{ fontWeight: '600', fontSize: '15px', color: '#1a1a2e' }}>{section.title}</span>
@@ -222,7 +218,6 @@ export default function LastMinuteRevision() {
         ))}
       </div>
 
-      {/* Footer encouragement */}
       <div style={{ background: '#1a1a2e', borderRadius: '12px', padding: '16px', marginTop: '1.5rem', textAlign: 'center' }}>
         <p style={{ fontSize: '15px', fontWeight: '600', color: '#ffffff', margin: '0 0 6px' }}>You've got this 💪</p>
         <p style={{ fontSize: '13px', color: '#9ca3af', margin: 0, lineHeight: 1.6 }}>
