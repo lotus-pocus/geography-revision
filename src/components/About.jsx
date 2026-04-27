@@ -58,7 +58,7 @@ function About() {
           🌐 gamoola.com
         </a>
         <a href="mailto:hello@gamoola.com" className="about-link">
-          📧 hello@gamoola.com
+          📧 lotus@gamoola.com
         </a>
       </div>
 
@@ -72,7 +72,7 @@ function About() {
           respective owners. This app is not intended for commercial
           distribution or profit. If you are the owner of any content featured
           here and would like it removed, please get in touch at
-          hello@gamoola.com.
+          lotus@gamoola.com.
         </p>
       </div>
 

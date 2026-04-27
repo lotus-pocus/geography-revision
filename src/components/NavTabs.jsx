@@ -10,6 +10,7 @@ const tabs = [
   { id: 'about',       label: 'About' },
   { id: 'updates',     label: '✨ Updates' },
   { id: 'lastminute', label: '⏰ Last Minute' },
+  { id: 'references', label: '📚 References' },
 ];
 
 function NavTabs({ activeTab, onTabChange }) {

@@ -20,6 +20,7 @@ import Updates from "./components/Updates";
 import "./index.css";
 import About from "./components/About";
 import LastMinuteRevision from "./components/LastMinuteRevision";
+import References from "./components/References";
 
 const ALL_TOPICS = [
   ...hazardousEarth,
@@ -56,7 +57,7 @@ function App() {
   };
 
   const handleTabChange = (tab) => {
-    if (tab === "quiz") setQuizKey(k => k + 1);
+    if (tab === "quiz") setQuizKey((k) => k + 1);
     setShowBeach(false);
     setSelectedId(null);
     setActiveTab(tab);
@@ -120,6 +121,8 @@ function App() {
         return <LastMinuteRevision />;
       default:
         return null;
+      case "references":
+        return <References />;
     }
   };
 
